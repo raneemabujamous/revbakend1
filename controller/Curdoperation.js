@@ -37,4 +37,20 @@ const deleteMethod = async (req, res) => {
     }
   });
 };
-module.exports = { postMethod, getFromPost, deleteMethod };
+
+const updateMethod = async (req, res) => {
+  const { title } = req.body;
+  const slug = req.params.slug;
+  Schememod.find({ slug: slug }, (error, data) => {
+    if (error) {
+      res.send(error, "hiiiii");
+    } else {
+      data[0].title = title;
+      data[0].save();
+      Schememod.find({}, (error, data) => {
+        res.send(data);
+      });
+    }
+  });
+};
+module.exports = { postMethod, getFromPost, deleteMethod, updateMethod };

@@ -13,6 +13,7 @@ const {
   postMethod,
   getFromPost,
   deleteMethod,
+  updateMethod,
 } = require("./controller/Curdoperation");
 mongoose.connect("mongodb://localhost:27017/art", {
   useNewUrlParser: true,
@@ -21,6 +22,7 @@ app.get("/getDataAPI", getDatFromApi);
 app.post("/postData", postMethod);
 app.get("/getFromPost", getFromPost);
 app.delete("/deletedata/:slug", deleteMethod);
+app.put("/updatemethod/:slug", updateMethod);
 app.get("/", (req, res) => {
   res.send("hello from test");
 });
